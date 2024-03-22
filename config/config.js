@@ -5,6 +5,6 @@ module.exports = {
     database: 'nest',
     host: 'localhost',
     port: 5432,
-    dialect: 'postgres',
+    dialect: 'postgres'
   }
 }

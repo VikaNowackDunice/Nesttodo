@@ -1,11 +1,10 @@
-import { Table, Column, Model, CreatedAt, UpdatedAt, DataType, Sequelize, } from 'sequelize-typescript';
+import { Table, Column, Model,DataType } from 'sequelize-typescript'
 
-interface TodoCreationAttr{
+interface TodoCreationAttr {
   text:string;
   isChecked: boolean;
 }
-
-@Table({tableName: 'todolist'})
+@Table( {tableName: 'todolist'} )
 export class Todo extends Model<Todo, TodoCreationAttr> {
   static filter: any;
   static isChecked: any;

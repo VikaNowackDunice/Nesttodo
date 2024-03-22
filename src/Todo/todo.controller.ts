@@ -1,5 +1,5 @@
 import { TodoService } from "./todo.service";
-import { Controller, Post, Req, Get,  Body, Put, Delete, Param } from "@nestjs/common";
+import { Controller, Get, Post, Body, Put, Delete, Param } from "@nestjs/common";
 import {Todo} from "./todo.model";
 import {CreateTodoDto} from "./dto/create-todo.dto";
 
@@ -9,36 +9,32 @@ export class TodoController{
   constructor(private readonly todoService:TodoService) {}
 
   @Get('/allTodo')
-  getAllTodo(@Req() request: Request){
+  getAllTodo(){
     return this.todoService.getAllTodo();
   }
 
   @Post('/createTodo')
-  create(@Body() todoDto: CreateTodoDto){
+  createTodo(@Body() todoDto: CreateTodoDto){
     return this.todoService.createTodo(todoDto);
   }
 
   @Put('/updateAllTodo')
-  updateAllTodo(@Body() todoData: CreateTodoDto){
-    return this.todoService.updateAllTodo(todoData);
+  updateAllTodo(@Body() todoData: CreateTodoDto, id:number){
+    return this.todoService.updateAllTodo(todoData, id);
   }
 
-  @Put('/updateCheckTodo')
-  updateCheckTodo(@Body() CreateTodoDto, id: number){
-    return this.todoService.updateCheckTodo(CreateTodoDto, id);
+  @Put('/updateCheckTodo/:id')
+  updateCheckTodo(@Param('id') id: number, @Body() todoData: CreateTodoDto){
+    return this.todoService.updateCheckTodo(todoData, id);
   }
 
   @Delete('/deleteOne/:id')
-    remove(@Param('id') id: number){
-      return this.todoService.deleteOneTodo(id);
+  deleteOneTodo(@Param('id') id: number){
+    return this.todoService.deleteOneTodo(id);
     }
 
   @Delete('/deleteaAll')
-  deleteAll(@Body() isChecked: CreateTodoDto){
+  deleteAllTodo(@Body() isChecked: boolean){
     return this.todoService.deleteAllTodo(isChecked);
   }
-}
-
-function remove(arg0: any, id: any, number: any) {
-  throw new Error("Function not implemented.");
 }
