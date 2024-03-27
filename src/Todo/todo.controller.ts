@@ -7,35 +7,35 @@ import {CreateTodoDto} from "./dto/create-todo.dto";
 @Controller('todos')
 export class TodoController{
 
-  constructor(private readonly todoService:TodoService) {}
+constructor(private readonly todoService:TodoService) {}
 
-  @Get('/all-todo')
-  getAllTodo(){
-    return this.todoService.getAllTodo();
-  }
+@Get()
+getAllTodo(){
+return this.todoService.getAllTodo();
+}
 
-  @Post('/create-todo')
-  createTodo(@Body() todoDto: CreateTodoDto){
-    return this.todoService.createTodo(todoDto);
-  }
+@Post('/create')
+createTodo(@Body() todoDto: CreateTodoDto){
+return this.todoService.createTodo(todoDto);
+}
 
-  @Put('/update-all-todo')
-  updateAllTodo(@Body() todoData: CreateTodoDto, id:number){
-    return this.todoService.updateAllTodo(todoData, id);
-  }
+@Put('/update')
+updateAllTodo(@Body() todoData: CreateTodoDto, id:number){
+return this.todoService.updateAllTodo(todoData, id);
+}
 
-  @Put('/update-check-todo/:id')
-  updateCheckTodo(@Param('id') id: number, @Body() todoData: CreateTodoDto){
-    return this.todoService.updateCheckTodo(todoData, id);
-  }
+@Put('/update/:id')
+updateCheckTodo(@Param('id') id: number, @Body() todoData: CreateTodoDto){
+return this.todoService.updateCheckTodo(todoData, id);
+}
 
-  @Delete('/delete-one/:id')
-  deleteOneTodo(@Param('id') id: number){
-    return this.todoService.deleteOneTodo(id);
-  }
+@Delete('/:id')
+deleteOneTodo(@Param('id') id: number){
+return this.todoService.deleteOneTodo(id);
+}
 
-  @Delete('/deletea-all')
-  deleteAllTodo(@Body() isChecked: boolean){
-    return this.todoService.deleteAllTodo(isChecked);
-  }
+@Delete()
+deleteAllTodo(@Body() isChecked: boolean){
+return this.todoService.deleteAllTodo(isChecked);
+}
 }
