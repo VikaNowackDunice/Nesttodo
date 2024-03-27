@@ -1,9 +1,7 @@
 import { Table, Column, Model,DataType } from 'sequelize-typescript'
 
-interface TodoCreationAttr {
-  text:string;
-  isChecked: boolean;
-}
+import {TodoCreationAttr} from './types/types'
+
 @Table( {tableName: 'todolist'} )
 export class Todo extends Model<Todo, TodoCreationAttr> {
   static filter: any;

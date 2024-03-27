@@ -1,7 +1,8 @@
-import { TodoService } from './todo.service'
 import { Module } from '@nestjs/common'
-import { Todo } from './todo.model'
 import { SequelizeModule } from '@nestjs/sequelize'
+
+import { TodoService } from './todo.service'
+import { Todo } from './todo.model'
 import { TodoController } from './todo.controller'
 
 @Module({

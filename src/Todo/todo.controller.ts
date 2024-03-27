@@ -1,5 +1,7 @@
-import { TodoService } from "./todo.service";
 import { Controller, Get, Post, Body, Put, Delete, Param } from "@nestjs/common";
+
+import { TodoService } from "./todo.service";
+
 import {CreateTodoDto} from "./dto/create-todo.dto";
 
 @Controller('todos')
@@ -30,7 +32,7 @@ export class TodoController{
   @Delete('/delete-one/:id')
   deleteOneTodo(@Param('id') id: number){
     return this.todoService.deleteOneTodo(id);
-    }
+  }
 
   @Delete('/deletea-all')
   deleteAllTodo(@Body() isChecked: boolean){

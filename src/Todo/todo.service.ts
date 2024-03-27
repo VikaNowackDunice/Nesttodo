@@ -1,8 +1,9 @@
 import { InjectModel } from '@nestjs/sequelize'
-import { Todo } from './todo.model'
 import { Injectable, NotFoundException } from '@nestjs/common'
-import { type CreateTodoDto } from './dto/create-todo.dto'
 
+import { Todo } from './todo.model'
+
+import { type CreateTodoDto } from './dto/create-todo.dto'
 @Injectable()
 export class TodoService {
   constructor (@InjectModel(Todo) private readonly todoRepository: typeof Todo) {}

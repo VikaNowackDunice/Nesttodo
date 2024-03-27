@@ -1,7 +1,7 @@
 import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
 import cors from 'cors';
 
+import { AppModule } from './app.module';
 
 async function start() {
   const PORT =process.env.PORT || 5006
