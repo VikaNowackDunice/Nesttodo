@@ -4,6 +4,9 @@
   "compilerOptions": {
     "strict": true,
     "suppressExcessPropertyErrors": true,
-    "ignoreDeprecations": "5.0"
+    "ignoreDeprecations": "5.0",
+    "include": [
+      ".eslintrc.js"
+    ]
   }
 }
