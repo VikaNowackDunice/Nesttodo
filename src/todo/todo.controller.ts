@@ -20,8 +20,8 @@ export class TodoController{
   }
 
   @Put('/update')
-  updateAllTodo(@Body() todoData: CreateTodoDto, id:number){
-    return this.todoService.updateAllTodo(todoData, id);
+  updateAllTodo(@Body() todoData: CreateTodoDto){
+    return this.todoService.updateAllTodo(todoData);
   }
 
   @Put('/update/:id')

@@ -18,7 +18,7 @@ export class TodoService {
     return todo
   }
 
-  async updateAllTodo (dto: CreateTodoDto, id: number): Promise<[affectedCount: number]> {
+  async updateAllTodo (dto: CreateTodoDto){
     const todo = await this.todoRepository.update(
       { isChecked: dto.isChecked },
       { where: {} }

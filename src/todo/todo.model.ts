@@ -4,11 +4,7 @@ import {TodoCreationAttr} from './types/types'
 
 @Table( {tableName: 'todolist'} )
 export class Todo extends Model<Todo, TodoCreationAttr> {
-  static filter: any;
-  static isChecked: any;
-  static findByIdAndDelete(id: any) {
-    throw new Error('Method not implemented.');
-  }
+
   @Column({ type: DataType.STRING, allowNull: true})
   text: string;
 
