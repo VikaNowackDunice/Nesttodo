@@ -9,21 +9,34 @@ export class TodoService {
   constructor (@InjectModel(Todo) private readonly todoRepository: typeof Todo) {}
 
   async getAllTodo (): Promise<Todo[]> {
-    const todos = await this.todoRepository.findAll()
-    return todos
+    try{
+      const todos = await this.todoRepository.findAll()
+      return todos
+    } catch (error) {
+        throw new NotFoundException('Todo items not found')
+    }
   }
 
   async createTodo (dto: CreateTodoDto): Promise<Todo> {
-    const todo = await this.todoRepository.create(dto)
-    return todo
+     try{
+      const todo = await this.todoRepository.create(dto)
+      return todo
+     } catch (error){
+        throw new NotFoundException('Failed to create todo item')
+     }
   }
 
   async updateAllTodo (dto: CreateTodoDto){
-    const todo = await this.todoRepository.update(
-      { isChecked: dto.isChecked },
-      { where: {} }
-    )
-    return todo
+    try{
+      const todo = await this.todoRepository.update(
+        { isChecked: dto.isChecked },
+        { where: {} }
+      )
+      return todo
+    } catch (error){
+        throw new NotFoundException('Failed to create todo item')
+     }
+    
   }
 
   async updateCheckTodo (dto: CreateTodoDto, id: number): Promise<Todo> {
@@ -37,31 +50,37 @@ export class TodoService {
       }
       return affectedRows[0];
     } catch (error) {
-      throw new NotFoundException(`Todo list item was not ${id}`)
+        throw new NotFoundException(`Todo list item was not ${id}`)
     } 
   }
 
-  async deleteOneTodo (id: number): Promise<void> {
+  async deleteOneTodo (id: number): Promise<string> {
     try {
       const deleteTodo = await this.todoRepository.destroy({
         where: {
           id
         }
       })
+
       if(deleteTodo === 0) {
         throw new NotFoundException(`Todo list item with id ${id} was not found`);
       }
+      return `Todo list item with id ${id} was successfully deleted`;
     } catch (error) {
       throw new NotFoundException(`Todo list item was not deleted`)
     }
   }
 
-  async deleteAllTodo (): Promise<number> {
-    const todo = await this.todoRepository.destroy({
-      where: {
-        isChecked : true
-      }
-    })
-    return todo
-  }
+  async deleteCheckedTodo (): Promise<number> {
+    try{
+      const todo = await this.todoRepository.destroy({
+        where: {
+          isChecked : true
+        }
+      })
+      return todo
+    } catch(error){
+      throw new NotFoundException(`Todo list item was not deleted`)
+    }
+  }  
 }

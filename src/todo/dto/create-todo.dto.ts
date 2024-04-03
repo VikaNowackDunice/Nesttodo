@@ -1,4 +1,5 @@
 import { IsString, IsBoolean, IsNumber} from 'class-validator';
+
 export class CreateTodoDto {
   @IsNumber()
   id?: number;

@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Put, Delete, Param, UsePipes } from "@nestjs/common";
+import { Controller, 
+  Get, 
+  Post, 
+  Body, 
+  Put, 
+  Delete, 
+  Param, 
+  UsePipes } 
+  from "@nestjs/common";
 import { ValidationPipe } from "@nestjs/common";
 
 import { TodoService } from "./todo.service";
@@ -19,12 +27,12 @@ export class TodoController{
     return this.todoService.createTodo(todoDto);
   }
 
-  @Put('/update')
+  @Put()
   updateAllTodo(@Body() todoData: CreateTodoDto){
     return this.todoService.updateAllTodo(todoData);
   }
 
-  @Put('/update/:id')
+  @Put('/:id')
   @UsePipes(new ValidationPipe())
   updateCheckTodo(@Param('id') id: number, @Body() todoData: CreateTodoDto){
     return this.todoService.updateCheckTodo(todoData, id);
@@ -37,7 +45,7 @@ export class TodoController{
   }
 
   @Delete()
-  deleteAllTodo(){
-    return this.todoService.deleteAllTodo();
+  deleteCheckedTodo(){
+    return this.todoService.deleteCheckedTodo();
   }
 }

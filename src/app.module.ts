@@ -23,7 +23,5 @@ import { TodoModule } from './todo/todo.module';
     }),
     TodoModule,
   ],
-  controllers: [],
-  providers: [],
 })
 export class AppModule {}
